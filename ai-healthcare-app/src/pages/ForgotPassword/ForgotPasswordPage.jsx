@@ -148,9 +148,8 @@ const ForgotPasswordPage = () => {
             text-blue-600
             text-sm
             font-semibold
-            hover:underline
-          "
-          >
+            hover:underline">
+        
             Back to Login
           </button>
         </div>
