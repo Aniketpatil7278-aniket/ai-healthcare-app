@@ -5,6 +5,8 @@ import DashboardPage from "./pages/Dashboard/DashboardPage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
+import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
+
 function App() {
   const user = localStorage.getItem("user");
 
@@ -16,6 +18,7 @@ function App() {
         path="/"
         element={user ? <Navigate to="/dashboard" /> : <LoginPage />}
       />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
       {/* Dashboard Protected Route */}
 

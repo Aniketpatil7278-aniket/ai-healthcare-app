@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 
-import { FaHeartbeat} from "react-icons/fa";
+import { FaHeartbeat } from "react-icons/fa";
 
 import InputField from "../../components/forms/InputField";
 import PasswordField from "../../components/forms/PasswordField";
@@ -14,7 +14,7 @@ import Loader from "../../components/common/Loader";
 import loginValidationSchema from "./loginValidation";
 
 import backgroundImg from "../../assets/backgroundimg.avif";
-
+import Logo from "../../assets/logo";
 // import "./LoginPage.scss";
 
 const LoginPage = () => {
@@ -45,7 +45,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-page relative min-h-screen overflow-hidden">
-      {/* Background */}
+      {/* Background img */}
       <div className="absolute inset-0">
         <img
           src={backgroundImg}
@@ -54,12 +54,11 @@ const LoginPage = () => {
         />
       </div>
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
 
       {/* Main Container */}
       <div className="relative z-10 grid min-h-screen grid-cols-2 p-8 lg:grid-cols-2 max-lg:grid-cols-1 max-lg:p-5">
-        {/* LEFT SECTION */}
+        {/* Left Section of the page  */}
         <div className="flex flex-col justify-center p-16 text-white max-lg:hidden">
           {/* Brand */}
           <div className="mb-12 flex items-center gap-5">
@@ -115,17 +114,9 @@ const LoginPage = () => {
             </div>
 
             {/* Form Header */}
-            {/* Form Header */}
             <div className="mb-9 text-center">
               {/* Logo */}
-              <div
-                className="mx-auto mb-5 flex h-[85px] w-[85px]
-    items-center justify-center rounded-[24px]
-    bg-gradient-to-br from-blue-600 to-cyan-500
-    text-[40px] text-white shadow-lg"
-              >
-                <FaHeartbeat />
-              </div>
+              <Logo />
 
               <h2 className="text-[38px] font-bold text-gray-900 max-sm:text-[28px]">
                 Welcome Back
@@ -164,6 +155,8 @@ const LoginPage = () => {
                   <PasswordField
                     label="Password"
                     name="password"
+                    placeholder="Enter Password"
+                    autoComplete="current-password"
                     showPassword={showPassword}
                     setShowPassword={setShowPassword}
                   />
@@ -182,7 +175,8 @@ const LoginPage = () => {
 
                     <button
                       type="button"
-                      className="text-sm font-semibold text-blue-600 transition-all duration-300 hover:text-blue-700"
+                      onClick={() => navigate("/forgot-password")}
+                      className="text-sm font-semibold text-blue-600 hover:text-blue-700"
                     >
                       Forgot Password?
                     </button>
@@ -211,13 +205,9 @@ const LoginPage = () => {
                     <Button
                       type="submit"
                       title="Login"
-                      className="w-full rounded-2xl border-none
-                  bg-gradient-to-br from-blue-600 to-cyan-500
-                  py-4 text-lg font-semibold text-white
-                  transition-all duration-300
-                  hover:-translate-y-0.5
-                  hover:shadow-[0_12px_30px_rgba(37,99,235,0.35)]
-                  disabled:cursor-not-allowed disabled:opacity-60"
+                      className="w-full rounded-2xl border-none bg-gradient-to-br from-blue-600 to-cyan-500 py-4 text-lg font-semibold text-white transition-all duration-300 hover:-translate-y-0.5
+                                hover:shadow-[0_12px_30px_rgba(37,99,235,0.35)]
+                            disabled:cursor-not-allowed disabled:opacity-60"
                       disabled={!isValid}
                     />
                   )}

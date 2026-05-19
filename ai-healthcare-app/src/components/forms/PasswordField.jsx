@@ -1,35 +1,75 @@
 import { Field, ErrorMessage } from "formik";
 
-const PasswordField = ({ label, name, showPassword, setShowPassword }) => {
+const PasswordField = ({
+  label,
+  name,
+  placeholder = "Enter Password",
+  autoComplete = "current-password",
+  showPassword,
+  setShowPassword,
+}) => {
   return (
     <div>
-      <label htmlFor={name} className="block mb-2 font-medium">
+      {/* Label */}
+
+      <label
+        htmlFor={name}
+        className="
+        mb-2
+        block
+        font-medium
+      "
+      >
         {label}
       </label>
+
+      {/* Input */}
 
       <div className="relative">
         <Field
           id={name}
           type={showPassword ? "text" : "password"}
           name={name}
-          placeholder="Enter Password"
-          autoComplete="current-password"
-          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          className="
+          w-full
+          rounded-lg
+          border
+          border-gray-300
+          p-3
+          outline-none
+          focus:border-blue-500
+        "
         />
+
+        {/* Toggle Button */}
 
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-3 text-blue-500 text-sm"
+          className="
+          absolute
+          right-3
+          top-3
+          text-sm
+          text-blue-500
+        "
         >
           {showPassword ? "Hide" : "Show"}
         </button>
       </div>
 
+      {/* Error Message */}
+
       <ErrorMessage
         name={name}
         component="div"
-        className="text-red-500 text-sm mt-1"
+        className="
+        mt-1
+        text-sm
+        text-red-500
+      "
       />
     </div>
   );
