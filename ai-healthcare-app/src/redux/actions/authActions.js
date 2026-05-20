@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGOUT } from "../constants/authConstants";
+import { LOGIN_REQUEST, LOGOUT } from "../Constants/AuthConstants";
 
 export const loginRequest = (data) => ({
   type: LOGIN_REQUEST,

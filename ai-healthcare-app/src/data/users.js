@@ -9,8 +9,8 @@ const users = [
 
   {
     id: 2,
-    name: "John Doe",
-    email: "john@gmail.com",
+    name: "mohan p",
+    email: "mohan@gmail.com",
     password: "john123",
     role: "Staff",
   },

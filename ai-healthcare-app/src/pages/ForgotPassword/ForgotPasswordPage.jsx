@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import { FaLock } from "react-icons/fa";
 import InputField from "../../components/forms/InputField";
 import PasswordField from "../../components/forms/PasswordField";
-import Button from "../../components/common/Button";
-import forgotPasswordValidationSchema from "./forgotPasswordValidation";
+import Button from "../../components/Common/Button";
+import forgotPasswordValidationSchema from "./ForgotPasswordValidation";
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
