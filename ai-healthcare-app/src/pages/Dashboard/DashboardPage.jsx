@@ -1,90 +1,28 @@
-import { useNavigate } from "react-router-dom";
+// DashboardPage.jsx
 
-import { useDispatch } from "react-redux";
-
-import Sidebar from "../../components/layout/Sidebar";
-import Header from "../../components/layout/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
 
 import Card from "../../components/common/Card";
 
 import { FaHospital, FaProcedures, FaUserInjured, FaBed } from "react-icons/fa";
 
-import Swal from "sweetalert2";
-
-import { logoutUser } from "../../redux/actions/authActions";
-
 const DashboardPage = () => {
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
-
   const user = JSON.parse(localStorage.getItem("user"));
-
-  // Logout Function
-
-  const handleLogout = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-
-      text: "You want to logout?",
-
-      icon: "warning",
-
-      showCancelButton: true,
-
-      confirmButtonColor: "#3085d6",
-
-      cancelButtonColor: "#d33",
-
-      confirmButtonText: "Yes, Logout",
-    });
-
-    if (result.isConfirmed) {
-      // Redux Logout
-
-      dispatch(logoutUser());
-
-      // Remove LocalStorage
-
-      localStorage.removeItem("user");
-
-      // Success Alert
-
-      Swal.fire({
-        icon: "success",
-
-        title: "Logout Successful",
-
-        text: "Redirecting to login page...",
-
-        timer: 1500,
-
-        showConfirmButton: false,
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
-    }
-  };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-
       <Sidebar />
 
       {/* Main Content */}
-
       <main className="flex-1 p-4 md:p-8">
         {/* Header */}
-
         <div className="mb-8">
           <Header user={user} />
         </div>
 
         {/* Welcome Section */}
-
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div>
             <h2 className="text-3xl font-bold text-gray-800">
@@ -95,19 +33,9 @@ const DashboardPage = () => {
               Manage admissions and hospital operations efficiently.
             </p>
           </div>
-
-          {/* Logout Button */}
-
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 transition-all text-white px-5 py-3 rounded-xl shadow"
-          >
-            Logout
-          </button>
         </div>
 
         {/* Statistics Cards */}
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="relative">
             <Card title="Total Admissions" value="120" />
@@ -135,7 +63,6 @@ const DashboardPage = () => {
         </div>
 
         {/* Quick Actions */}
-
         <div className="mt-10 bg-white p-6 rounded-2xl shadow">
           <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
 
