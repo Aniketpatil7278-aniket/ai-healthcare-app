@@ -18,6 +18,8 @@ import admissionValidationSchema from "../Admission/admissionValidation";
 import Button from "../../components/common/Button";
 
 const AdmissionPage = () => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   const [step, setStep] = useState(1);
 
   const nextStep = () => {
@@ -58,7 +60,7 @@ const AdmissionPage = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-6">
-        <Header />
+        <Header user={user} />
 
         {/* Breadcrumb */}
         <div className="mb-6 text-gray-500">

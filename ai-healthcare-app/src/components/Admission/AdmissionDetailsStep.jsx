@@ -2,9 +2,9 @@
 // src/components/Admission/AdmissionDetailsStep.jsx
 // ==========================
 
-import { Field, ErrorMessage, useFormikContext } from "formik";
-
 import { useEffect } from "react";
+
+import { useFormikContext } from "formik";
 
 import InputField from "../forms/InputField";
 
@@ -23,22 +23,13 @@ const DepartmentField = () => {
   }, [values.doctor, setFieldValue]);
 
   return (
-    <div>
-      <label className="block mb-2 font-medium">Department</label>
-
-      <Field
-        type="text"
-        name="department"
-        readOnly
-        className="w-full border border-gray-300 p-3 rounded-lg bg-gray-100"
-      />
-
-      <ErrorMessage
-        name="department"
-        component="div"
-        className="text-red-500 text-sm mt-1"
-      />
-    </div>
+    <InputField
+      label="Department"
+      name="department"
+      type="text"
+      readOnly={true}
+      placeholder="Department"
+    />
   );
 };
 
@@ -49,79 +40,44 @@ const AdmissionDetailsStep = () => {
   return (
     <div>
       {/* Heading */}
-      <h2 className="text-2xl font-bold mb-6">Admission Details</h2>
+      <h2 className="mb-6 text-2xl font-bold">Admission Details</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {/* Admission Date */}
         <InputField
           label="Admission Date"
           name="admissionDate"
           type="date"
           min={today}
-          value={today}
         />
 
         {/* Admission Type */}
-        <div>
-          <label className="block mb-2 font-medium">Admission Type</label>
-
-          <Field
-            as="select"
-            name="admissionType"
-            className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
-          >
-            <option value="">Select Admission Type</option>
-
-            <option value="Emergency">Emergency</option>
-
-            <option value="General">General</option>
-
-            <option value="ICU">ICU</option>
-          </Field>
-
-          <ErrorMessage
-            name="admissionType"
-            component="div"
-            className="text-red-500 text-sm mt-1"
-          />
-        </div>
+        <InputField
+          label="Admission Type"
+          name="admissionType"
+          as="select"
+          options={["Emergency", "General", "ICU"]}
+        />
 
         {/* Referring Doctor */}
-        <div>
-          <label className="block mb-2 font-medium">Referring Doctor</label>
-
-          <Field
-            as="select"
-            name="doctor"
-            className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
-          >
-            <option value="">Select Doctor</option>
-
-            {doctors.map((doctor, index) => (
-              <option key={index} value={doctor.name}>
-                {doctor.name}
-              </option>
-            ))}
-          </Field>
-
-          <ErrorMessage
-            name="doctor"
-            component="div"
-            className="text-red-500 text-sm mt-1"
-          />
-        </div>
+        <InputField
+          label="Referring Doctor"
+          name="doctor"
+          as="select"
+          options={doctors}
+        />
 
         {/* Department */}
         <DepartmentField />
 
-        {/* Reason */}
+        {/* Reason for Admission */}
         <div className="md:col-span-2">
           <InputField
             label="Reason for Admission"
             name="reason"
             as="textarea"
             rows="3"
-            placeholder="Enter Reason"
+            placeholder="Enter Reason for Admission"
           />
         </div>
 
@@ -132,7 +88,7 @@ const AdmissionDetailsStep = () => {
             name="symptoms"
             as="textarea"
             rows="3"
-            placeholder="Enter Symptoms"
+            placeholder="Enter Symptoms or Notes"
           />
         </div>
       </div>

@@ -31,35 +31,76 @@ import { Field, ErrorMessage } from "formik";
 const InputField = ({
   label,
   name,
-  type,
+  type = "text",
   placeholder,
   autoComplete,
-  min,
-  value,
   as,
+  options = [],
   rows,
-  readOnly,
+  readOnly = false,
+  min,
+  onChange,
 }) => {
   return (
     <div>
+      {/* Label */}
       <label htmlFor={name} className="block mb-2 font-medium">
         {label}
       </label>
 
-      <Field
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        min={min}
-        value={value}
-        as={as}
-        rows={rows}
-        readOnly={readOnly}
-        className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
-      />
+      {/* Select */}
+      {as === "select" ? (
+        <Field
+          as="select"
+          name={name}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
+        >
+          <option value="">Select {label}</option>
 
+          {options.map((option, index) => (
+            <option
+              key={index}
+              value={typeof option === "object" ? option.name : option}
+            >
+              {typeof option === "object" ? option.name : option}
+            </option>
+          ))}
+        </Field>
+      ) : as === "textarea" ? (
+        /* Textarea */
+        <Field
+          as="textarea"
+          name={name}
+          rows={rows}
+          placeholder={placeholder}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
+        />
+      ) : (
+        /* Input */
+        <Field name={name}>
+          {({ field, form }) => (
+            <input
+              {...field}
+              id={name}
+              type={type}
+              placeholder={placeholder}
+              autoComplete={autoComplete}
+              readOnly={readOnly}
+              min={min}
+              className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
+              onChange={(e) => {
+                field.onChange(e);
+
+                if (onChange) {
+                  onChange(e, form);
+                }
+              }}
+            />
+          )}
+        </Field>
+      )}
+
+      {/* Error */}
       <ErrorMessage
         name={name}
         component="div"
