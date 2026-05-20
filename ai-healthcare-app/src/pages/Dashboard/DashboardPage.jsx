@@ -1,14 +1,13 @@
 // DashboardPage.jsx
-
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-
 import Card from "../../components/common/Card";
-
 import { FaHospital, FaProcedures, FaUserInjured, FaBed } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const navigate = useNavigate();
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -44,7 +43,7 @@ const DashboardPage = () => {
           </div>
 
           <div className="relative">
-            <Card title="Available Beds" value="45" />
+            <Card title="Available Beds" value="50" />
 
             <FaBed className="absolute top-5 right-5 text-4xl text-green-500" />
           </div>
@@ -67,7 +66,10 @@ const DashboardPage = () => {
           <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <button className="bg-blue-600 hover:bg-blue-700 transition-all text-white p-4 rounded-xl">
+            <button
+              onClick={() => navigate("/admission")}
+              className="bg-blue-600 hover:bg-blue-700 transition-all text-white p-4 rounded-xl"
+            >
               New Admission
             </button>
 
@@ -75,11 +77,17 @@ const DashboardPage = () => {
               Allocate Bed
             </button>
 
-            <button className="bg-yellow-500 hover:bg-yellow-600 transition-all text-white p-4 rounded-xl">
+            <button
+              onClick={() => navigate("/patients")}
+              className="bg-yellow-500 hover:bg-yellow-600 transition-all text-white p-4 rounded-xl"
+            >
               Start Discharge
             </button>
 
-            <button className="bg-purple-600 hover:bg-purple-700 transition-all text-white p-4 rounded-xl">
+            <button
+              onClick={() => navigate("/patients")}
+              className="bg-purple-600 hover:bg-purple-700 transition-all text-white p-4 rounded-xl"
+            >
               Search Patient
             </button>
           </div>

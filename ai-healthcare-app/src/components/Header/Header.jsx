@@ -19,11 +19,8 @@ const Header = ({ user, onMenuClick }) => {
         items-center
         justify-between
         gap-5
-
         max-[768px]:p-4
-        max-[768px]:flex-wrap
-      "
-    >
+        max-[768px]:flex-wrap">
       {/* Left Section */}
       <div className="flex items-center gap-[14px]">
         <button
@@ -37,12 +34,9 @@ const Header = ({ user, onMenuClick }) => {
             transition-all
             duration-300
             hover:bg-gray-200
-
             max-[992px]:flex
             items-center
-            justify-center
-          "
-        >
+            justify-center">
           <Menu size={20} />
         </button>
 
@@ -52,10 +46,7 @@ const Header = ({ user, onMenuClick }) => {
               text-[28px]
               font-bold
               text-gray-900
-
-              max-[576px]:text-[22px]
-            "
-          >
+              max-[576px]:text-[22px]">
             Dashboard
           </h1>
 
@@ -64,10 +55,7 @@ const Header = ({ user, onMenuClick }) => {
               text-[14px]
               text-gray-500
               mt-1
-
-              max-[576px]:hidden
-            "
-          >
+              max-[576px]:hidden">
             Welcome back 👋
           </p>
         </div>
@@ -91,12 +79,9 @@ const Header = ({ user, onMenuClick }) => {
           duration-300
           focus-within:border-blue-500
           focus-within:shadow-[0_0_0_4px_rgba(59,130,246,0.15)]
-
           max-[768px]:order-3
           max-[768px]:max-w-full
-          max-[768px]:w-full
-        "
-      >
+          max-[768px]:w-full">
         <Search size={18} className="text-gray-400" />
 
         <input
@@ -109,9 +94,7 @@ const Header = ({ user, onMenuClick }) => {
             outline-none
             text-[14px]
             text-gray-900
-            placeholder:text-gray-400
-          "
-        />
+            placeholder:text-gray-400"/>
       </div>
 
       {/* Right Section */}
@@ -131,9 +114,7 @@ const Header = ({ user, onMenuClick }) => {
             transition-all
             duration-300
             hover:bg-blue-100
-            hover:-translate-y-[2px]
-          "
-        >
+            hover:-translate-y-[2px]">
           <Bell size={20} />
 
           <span
@@ -146,9 +127,7 @@ const Header = ({ user, onMenuClick }) => {
               bg-red-500
               rounded-full
               border-2
-              border-white
-            "
-          ></span>
+              border-white"></span>
         </button>
 
         {/* User Card */}
@@ -169,9 +148,7 @@ const Header = ({ user, onMenuClick }) => {
             duration-300
             cursor-pointer
             hover:-translate-y-[2px]
-            hover:shadow-[0_6px_20px_rgba(59,130,246,0.12)]
-          "
-        >
+            hover:shadow-[0_6px_20px_rgba(59,130,246,0.12)]">
           {/* Avatar */}
           <div
             className="
@@ -187,9 +164,7 @@ const Header = ({ user, onMenuClick }) => {
               text-white
               font-bold
               text-[18px]
-              shadow-[0_4px_12px_rgba(59,130,246,0.3)]
-            "
-          >
+              shadow-[0_4px_12px_rgba(59,130,246,0.3)]">
             {user?.name?.charAt(0) || "U"}
           </div>
 

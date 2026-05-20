@@ -81,24 +81,13 @@ const Sidebar = () => {
 
     if (result.isConfirmed) {
       // Redux Logout
-
       dispatch(logoutUser());
-
-      // Remove LocalStorage
-
-      localStorage.removeItem("user");
-
-      // Success Alert
-
+      sessionStorage.removeItem("user");
       Swal.fire({
         icon: "success",
-
         title: "Logout Successful",
-
         text: "Redirecting to login page...",
-
         timer: 1500,
-
         showConfirmButton: false,
       });
 

@@ -1,14 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginPage from "./pages/Login/LoginPage";
+
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
 
+import PatientsPage from "./pages/Patients/PatientsPage";
+
+import AdmissionPage from "./pages/Admission/AdmissionPage";
+
 function App() {
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
 
   return (
     <Routes>
@@ -18,9 +23,12 @@ function App() {
         path="/"
         element={user ? <Navigate to="/dashboard" /> : <LoginPage />}
       />
+
+      {/* Forgot Password */}
+
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-      {/* Dashboard Protected Route */}
+      {/* Protected Dashboard */}
 
       <Route
         path="/dashboard"
@@ -30,8 +38,25 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/patients"
+        element={
+          <ProtectedRoute>
+            <PatientsPage />
+          </ProtectedRoute>
+        }
+      />
+      {/* Admission Page */}
+      <Route
+        path="/admission"
+        element={
+          <ProtectedRoute>
+            <AdmissionPage />
+          </ProtectedRoute>
+        }
+      />
 
-      {/* 404 Route */}
+      {/* 404 */}
 
       <Route
         path="*"

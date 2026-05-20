@@ -28,21 +28,20 @@ const LoginPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      Swal.fire({
-        icon: "success",
-        title: "Login Successful",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+useEffect(() => {
+  if (isAuthenticated) {
+    Swal.fire({
+      icon: "success",
+      title: "Login Successful",
+      timer: 1500,
+      showConfirmButton: false,
+    });
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1500);
-    }
-  }, [isAuthenticated, navigate]);
-
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1500);
+  }
+}, [isAuthenticated, navigate]);
   return (
     <div className="login-page relative min-h-screen overflow-hidden">
       {/* Background img */}

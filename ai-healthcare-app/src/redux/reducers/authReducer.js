@@ -3,12 +3,15 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
-} from "../constants/authConstants";
+} from "../constants/AuthConstants.js";
 
 const initialState = {
   loading: false,
-  user: JSON.parse(localStorage.getItem("user")) || null,
-  isAuthenticated: !!localStorage.getItem("user"),
+
+  user: JSON.parse(sessionStorage.getItem("user")) || null,
+
+  isAuthenticated: !!sessionStorage.getItem("user"),
+
   error: null,
 };
 
@@ -37,10 +40,13 @@ const authReducer = (state = initialState, action) => {
       };
 
     case LOGOUT:
+      sessionStorage.removeItem("user");
+
       return {
         ...state,
         user: null,
         isAuthenticated: false,
+        error: null,
       };
 
     default:

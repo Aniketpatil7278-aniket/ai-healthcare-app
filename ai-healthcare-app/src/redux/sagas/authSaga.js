@@ -4,7 +4,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-} from "../constants/authConstants";
+} from "../constants/AuthConstants.js";
 
 import users from "../../data/users";
 
@@ -17,7 +17,8 @@ function* loginUser(action) {
     );
 
     if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
+      // localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("user", JSON.stringify(user));
 
       yield put({
         type: LOGIN_SUCCESS,
