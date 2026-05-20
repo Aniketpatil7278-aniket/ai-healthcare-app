@@ -1,7 +1,8 @@
 // DashboardPage.jsx
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-import Card from "../../components/common/Card";
+// import Card from "../../components/common/Card";
+import DashboardCard from "../../components/Common/DashboardCard";
 import { FaHospital, FaProcedures, FaUserInjured, FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -37,25 +38,25 @@ const DashboardPage = () => {
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="relative">
-            <Card title="Total Admissions" value="120" />
+            <DashboardCard title="Total Admissions" value="120" />
 
             <FaHospital className="absolute top-5 right-5 text-4xl text-blue-500" />
           </div>
 
           <div className="relative">
-            <Card title="Available Beds" value="50" />
+            <DashboardCard title="Available Beds" value="50" />
 
             <FaBed className="absolute top-5 right-5 text-4xl text-green-500" />
           </div>
 
           <div className="relative">
-            <Card title="Occupied Beds" value="75" />
+            <DashboardCard title="Occupied Beds" value="75" />
 
             <FaProcedures className="absolute top-5 right-5 text-4xl text-red-500" />
           </div>
 
           <div className="relative">
-            <Card title="Today's Discharges" value="12" />
+            <DashboardCard title="Today's Discharges" value="12" />
 
             <FaUserInjured className="absolute top-5 right-5 text-4xl text-yellow-500" />
           </div>

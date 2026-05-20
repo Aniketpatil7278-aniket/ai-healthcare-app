@@ -2,55 +2,37 @@
 // src/components/Admission/InsuranceStep.jsx
 // ==========================
 
-const InsuranceStep = ({ formData, setFormData }) => {
+import InputField from "../forms/InputField";
+
+const InsuranceStep = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div>
-        <label className="block mb-2 font-medium">Insurance Provider</label>
+    <div>
+      <h2 className="text-2xl font-bold mb-6">Insurance Information</h2>
 
-        <input
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Insurance Provider */}
+        <InputField
+          label="Insurance Provider"
+          name="insuranceProvider"
           type="text"
-          className="w-full border p-3 rounded-lg"
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              insuranceProvider: e.target.value,
-            })
-          }
+          placeholder="Enter Insurance Provider"
         />
-      </div>
 
-      <div>
-        <label className="block mb-2 font-medium">Policy Number</label>
-
-        <input
+        {/* Policy Number */}
+        <InputField
+          label="Policy Number"
+          name="policyNumber"
           type="text"
-          className="w-full border p-3 rounded-lg"
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              policyNumber: e.target.value,
-            })
-          }
+          placeholder="Enter Policy Number"
         />
-      </div>
 
-      <div>
-        <label className="block mb-2 font-medium">Coverage Type</label>
-
-        <select
-          className="w-full border p-3 rounded-lg"
-          onChange={(e) =>
-            setFormData({
-              ...formData,
-              coverageType: e.target.value,
-            })
-          }
-        >
-          <option>Select</option>
-          <option>Full</option>
-          <option>Partial</option>
-        </select>
+        {/* Coverage Type */}
+        <InputField
+          label="Coverage Type"
+          name="coverageType"
+          as="select"
+          options={["Full", "Partial"]}
+        />
       </div>
     </div>
   );

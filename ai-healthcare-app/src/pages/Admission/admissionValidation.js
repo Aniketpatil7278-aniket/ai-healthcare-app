@@ -8,10 +8,12 @@ const admissionValidationSchema = Yup.object({
     .required("Patient Name is required"),
 
   mobile: Yup.string()
-    .matches(/^[0-9]{10}$/, "Mobile number must be 10 digits")
-    .required("Mobile Number is required"),
+    .matches(/^[6-9]\d{9}$/, "Enter valid mobile number")
+    .required("Mobile number is required"),
 
   admissionDate: Yup.string().required("Admission Date is required"),
+
+  doctor: Yup.string().required("Referring Doctor is required"),
 
   department: Yup.string().required("Department is required"),
 

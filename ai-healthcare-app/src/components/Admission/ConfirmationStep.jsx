@@ -2,25 +2,39 @@
 // src/components/Admission/ConfirmationStep.jsx
 // ==========================
 
-import Card from "../Common/Card";
+import { useFormikContext } from "formik";
 
-const ConfirmationStep = ({ formData }) => {
+import Card from "../common/Card";
+
+const ConfirmationStep = () => {
+  const { values } = useFormikContext();
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6">Admission Summary</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <Card title="Patient Name" value={formData.patientName} />
+        <Card title="Patient Name" value={values.patientName} />
 
-        <Card title="Mobile Number" value={formData.mobile} />
+        <Card title="Mobile Number" value={values.mobile} />
 
-        <Card title="Admission Type" value={formData.admissionType} />
+        <Card title="Admission Date" value={values.admissionDate} />
 
-        <Card title="Department" value={formData.department} />
+        <Card title="Admission Type" value={values.admissionType} />
 
-        <Card title="Doctor" value={formData.doctor} />
+        <Card title="Department" value={values.department} />
 
-        <Card title="Insurance" value={formData.insuranceProvider} />
+        <Card title="Doctor" value={values.doctor} />
+
+        <Card title="Reason" value={values.reason} />
+
+        <Card title="Symptoms" value={values.symptoms} />
+
+        <Card title="Insurance Provider" value={values.insuranceProvider} />
+
+        <Card title="Policy Number" value={values.policyNumber} />
+
+        <Card title="Coverage Type" value={values.coverageType} />
       </div>
     </div>
   );

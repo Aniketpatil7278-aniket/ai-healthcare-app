@@ -6,6 +6,8 @@ import { useState } from "react";
 
 import { Formik, Form } from "formik";
 
+import Swal from "sweetalert2";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 
@@ -16,6 +18,7 @@ import InsuranceStep from "../../components/Admission/InsuranceStep";
 import ConfirmationStep from "../../components/Admission/ConfirmationStep";
 import admissionValidationSchema from "../Admission/admissionValidation";
 import Button from "../../components/common/Button";
+
 
 const AdmissionPage = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
@@ -46,13 +49,36 @@ const AdmissionPage = () => {
     policyNumber: "",
     coverageType: "",
   };
+const handleSubmit = async (values, { resetForm }) => {
+  console.log(values);
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  // Confirmation Popup after clicking Submit
+  const result = await Swal.fire({
+    title: "Confirm Admission?",
+    text: "Are you sure you want to submit this admission?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Yes, Submit",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#16a34a",
+    cancelButtonColor: "#dc2626",
+    background: "#ffffff",
+  });
 
-    alert("Admission Confirmed Successfully");
-  };
+  // Final Success
+  if (result.isConfirmed) {
+    await Swal.fire({
+      title: "Admission Confirmed!",
+      text: "Patient admission completed successfully.",
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#16a34a",
+    });
 
+    resetForm();
+    setStep(1);
+  }
+};
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
@@ -71,12 +97,13 @@ const AdmissionPage = () => {
         <Stepper step={step} />
 
         {/* Formik */}
+        {/* Formik */}
         <Formik
           initialValues={initialValues}
           validationSchema={admissionValidationSchema}
           onSubmit={handleSubmit}
         >
-          {() => (
+          {({ validateForm, setTouched }) => (
             <Form>
               <div className="bg-white rounded-2xl shadow p-6 mt-6">
                 {/* Step 1 */}
@@ -93,14 +120,59 @@ const AdmissionPage = () => {
 
                 {/* Buttons */}
                 <div className="flex justify-between mt-8">
-                  {step > 1 && <Button title="Previous" onClick={prevStep} />}
+                  {/* Previous */}
+                  {step > 1 && (
+                    <Button title="Previous" type="button" onClick={prevStep} />
+                  )}
 
+                  {/* Next */}
                   {step < 4 ? (
-                    <Button title="Next" onClick={nextStep} />
+                    <Button
+                      title="Next"
+                      type="button"
+                      onClick={async () => {
+                        const errors = await validateForm();
+
+                        // STEP 1 Validation
+                        if (step === 1) {
+                          setTouched({
+                            patientName: true,
+                            mobile: true,
+                          });
+
+                          if (errors.patientName || errors.mobile) {
+                            return;
+                          }
+                        }
+
+                        // STEP 2 Validation
+                        if (step === 2) {
+                          setTouched({
+                            admissionDate: true,
+                            admissionType: true,
+                            department: true,
+                            doctor: true,
+                            reason: true,
+                          });
+
+                          if (
+                            errors.admissionDate ||
+                            errors.admissionType ||
+                            errors.department ||
+                            errors.doctor ||
+                            errors.reason
+                          ) {
+                            return;
+                          }
+                        }
+
+                        nextStep();
+                      }}
+                    />
                   ) : (
                     <Button
                       type="submit"
-                      title="Confirm Admission"
+                      title="Submit Admission"
                       className="bg-green-600 hover:bg-green-700"
                     />
                   )}
