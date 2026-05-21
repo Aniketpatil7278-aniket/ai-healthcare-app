@@ -3,23 +3,23 @@
 const patient = [
   {
     id: 1,
-    patientId: "PT1001",
-    name: "Rahul Sharma",
+    patientId: "P-2026-001",
+    name: "Aniket Patil",
     age: 32,
     gender: "Male",
     disease: "Fever",
     doctor: "Dr. Mehta",
     room: "A-101",
-    bed: "B12",
+    bed: "G-101",
     status: "Admitted",
     admissionDate: "2026-05-10",
-    phone: "9876543210",
+    phone: "7899974376",
     address: "Mumbai",
   },
 
   {
     id: 2,
-    patientId: "PT1002",
+    patientId: "P-2026-002",
     name: "Priya Patel",
     age: 28,
     gender: "Female",
@@ -35,7 +35,7 @@ const patient = [
 
   {
     id: 3,
-    patientId: "PT1003",
+    patientId: "P-2026-003",
     name: "Amit Verma",
     age: 45,
     gender: "Male",
@@ -51,7 +51,7 @@ const patient = [
 
   {
     id: 4,
-    patientId: "PT1004",
+    patientId: "P-2026-004",
     name: "Sneha Kulkarni",
     age: 36,
     gender: "Female",
@@ -67,7 +67,7 @@ const patient = [
 
   {
     id: 5,
-    patientId: "PT1005",
+    patientId: "P-2026-005",
     name: "Karan Singh",
     age: 52,
     gender: "Male",
@@ -83,7 +83,7 @@ const patient = [
 
   {
     id: 6,
-    patientId: "PT1006",
+    patientId: "P-2026-006",
     name: "Neha Reddy",
     age: 24,
     gender: "Female",
@@ -99,7 +99,7 @@ const patient = [
 
   {
     id: 7,
-    patientId: "PT1007",
+    patientId: "P-2026-007",
     name: "Vikram Yadav",
     age: 41,
     gender: "Male",
@@ -115,7 +115,7 @@ const patient = [
 
   {
     id: 8,
-    patientId: "PT1008",
+    patientId: "P-2026-008",
     name: "Anjali Desai",
     age: 30,
     gender: "Female",

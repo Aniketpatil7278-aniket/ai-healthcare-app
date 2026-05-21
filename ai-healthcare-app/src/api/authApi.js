@@ -10,7 +10,7 @@ export const loginUserApi = async (userData) => {
     (item) => item.email.toLowerCase() === userData.email.toLowerCase(),
   );
 
-  // Check password from API data
+  
   if (user && user.password === userData.password) {
     return user;
   }

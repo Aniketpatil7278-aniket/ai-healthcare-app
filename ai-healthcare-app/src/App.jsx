@@ -12,6 +12,8 @@ import PatientsPage from "./pages/Patients/PatientsPage";
 
 import AdmissionPage from "./pages/Admission/AdmissionPage";
 
+import BedWardAllocationPage from "./pages/BedAllocation/BedAllocationPage";
+
 function App() {
   const user = sessionStorage.getItem("user");
 
@@ -52,6 +54,15 @@ function App() {
         element={
           <ProtectedRoute>
             <AdmissionPage />
+          </ProtectedRoute>
+        }
+      />
+      {/* Bed/Ward Allocation */}
+      <Route
+        path="/bed-allocation"
+        element={
+          <ProtectedRoute>
+            <BedWardAllocationPage />
           </ProtectedRoute>
         }
       />

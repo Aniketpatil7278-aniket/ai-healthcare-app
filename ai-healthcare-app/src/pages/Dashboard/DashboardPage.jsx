@@ -74,7 +74,10 @@ const DashboardPage = () => {
               New Admission
             </button>
 
-            <button className="bg-green-600 hover:bg-green-700 transition-all text-white p-4 rounded-xl">
+            <button
+              onClick={() => navigate("/bed-allocation")}
+              className="bg-green-600 hover:bg-green-700 transition-all text-white p-4 rounded-xl"
+            >
               Allocate Bed
             </button>
 
