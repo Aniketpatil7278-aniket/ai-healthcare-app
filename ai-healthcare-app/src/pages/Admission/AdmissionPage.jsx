@@ -1,6 +1,5 @@
-// ==========================
+
 // src/pages/Admission/AdmissionPage.jsx
-// ==========================
 
 import { useState } from "react";
 
@@ -16,21 +15,24 @@ import PatientSearchStep from "../../components/Admission/PatientSearchStep";
 import AdmissionDetailsStep from "../../components/Admission/AdmissionDetailsStep";
 import InsuranceStep from "../../components/Admission/InsuranceStep";
 import ConfirmationStep from "../../components/Admission/ConfirmationStep";
-import admissionValidationSchema from "../Admission/admissionValidation";
-import Button from "../../components/common/Button";
 
+import admissionValidationSchema from "../Admission/admissionValidation";
+
+import Button from "../../components/common/Button";
 
 const AdmissionPage = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   const [step, setStep] = useState(1);
 
+  // Step Navigation
+  
   const nextStep = () => {
-    setStep(step + 1);
+    setStep((prev) => prev + 1);
   };
 
   const prevStep = () => {
-    setStep(step - 1);
+    setStep((prev) => prev - 1);
   };
 
   const initialValues = {
@@ -49,36 +51,39 @@ const AdmissionPage = () => {
     policyNumber: "",
     coverageType: "",
   };
-const handleSubmit = async (values, { resetForm }) => {
-  console.log(values);
 
-  // Confirmation Popup after clicking Submit
-  const result = await Swal.fire({
-    title: "Confirm Admission?",
-    text: "Are you sure you want to submit this admission?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonText: "Yes, Submit",
-    cancelButtonText: "Cancel",
-    confirmButtonColor: "#16a34a",
-    cancelButtonColor: "#dc2626",
-    background: "#ffffff",
-  });
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log(values);
 
-  // Final Success
-  if (result.isConfirmed) {
-    await Swal.fire({
-      title: "Admission Confirmed!",
-      text: "Patient admission completed successfully.",
-      icon: "success",
-      confirmButtonText: "OK",
+    const result = await Swal.fire({
+      title: "Confirm Admission?",
+      text: "Are you sure you want to submit this admission?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Submit",
+      cancelButtonText: "Cancel",
       confirmButtonColor: "#16a34a",
+      cancelButtonColor: "#dc2626",
+      background: "#ffffff",
     });
 
-    resetForm();
-    setStep(1);
-  }
-};
+    if (result.isConfirmed) {
+      await Swal.fire({
+        title: "Admission Confirmed!",
+        text: "Patient admission completed successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#16a34a",
+      });
+
+      resetForm();
+
+      localStorage.removeItem("admissionDraft");
+
+      setStep(1);
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
@@ -86,6 +91,7 @@ const handleSubmit = async (values, { resetForm }) => {
 
       {/* Main Content */}
       <main className="flex-1 p-6">
+        {/* Header */}
         <Header user={user} />
 
         {/* Breadcrumb */}
@@ -96,86 +102,118 @@ const handleSubmit = async (values, { resetForm }) => {
         {/* Stepper */}
         <Stepper step={step} />
 
-        {/* Formik */}
-        {/* Formik */}
+        {/* Formik Form */}
         <Formik
           initialValues={initialValues}
           validationSchema={admissionValidationSchema}
           onSubmit={handleSubmit}
         >
-          {({ validateForm, setTouched }) => (
+          {({ validateForm, setTouched, resetForm }) => (
             <Form>
               <div className="bg-white rounded-2xl shadow p-6 mt-6">
-                {/* Step 1 */}
+  
                 {step === 1 && <PatientSearchStep />}
 
-                {/* Step 2 */}
                 {step === 2 && <AdmissionDetailsStep />}
 
-                {/* Step 3 */}
                 {step === 3 && <InsuranceStep />}
 
-                {/* Step 4 */}
                 {step === 4 && <ConfirmationStep />}
 
-                {/* Buttons */}
+  
                 <div className="flex justify-between mt-8">
-                  {/* Previous */}
-                  {step > 1 && (
+                  {/* Previous Button */}
+                  {step > 1 ? (
                     <Button title="Previous" type="button" onClick={prevStep} />
+                  ) : (
+                    <div />
                   )}
 
-                  {/* Next */}
-                  {step < 4 ? (
+                  {/* Right Side Buttons */}
+                  <div className="flex gap-3">
+                    {/* Cancel Button */}
                     <Button
-                      title="Next"
+                      title="Cancel"
                       type="button"
-                      onClick={async () => {
-                        const errors = await validateForm();
+                      className="bg-red-500 hover:bg-red-600"
+                      onClick={() => {
+                        Swal.fire({
+                          title: "Cancel Admission?",
+                          text: "All entered data will be removed.",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonText: "Yes, Cancel",
+                          cancelButtonText: "No",
+                          confirmButtonColor: "#dc2626",
+                          cancelButtonColor: "#2563eb",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            resetForm();
 
-                        // STEP 1 Validation
-                        if (step === 1) {
-                          setTouched({
-                            patientName: true,
-                            mobile: true,
-                          });
+                            localStorage.removeItem("admissionDraft");
 
-                          if (errors.patientName || errors.mobile) {
-                            return;
+                            setStep(1);
+
+                            Swal.fire({
+                              icon: "success",
+                              title: "Admission Cancelled",
+                              confirmButtonColor: "#2563eb",
+                            });
                           }
-                        }
-
-                        // STEP 2 Validation
-                        if (step === 2) {
-                          setTouched({
-                            admissionDate: true,
-                            admissionType: true,
-                            department: true,
-                            doctor: true,
-                            reason: true,
-                          });
-
-                          if (
-                            errors.admissionDate ||
-                            errors.admissionType ||
-                            errors.department ||
-                            errors.doctor ||
-                            errors.reason
-                          ) {
-                            return;
-                          }
-                        }
-
-                        nextStep();
+                        });
                       }}
                     />
-                  ) : (
-                    <Button
-                      type="submit"
-                      title="Submit Admission"
-                      className="bg-green-600 hover:bg-green-700"
-                    />
-                  )}
+
+                    {/* Next Button */}
+                    {step < 4 ? (
+                      <Button
+                        title="Next"
+                        type="button"
+                        onClick={async () => {
+                          const errors = await validateForm();
+
+                          if (step === 1) {
+                            setTouched({
+                              patientName: true,
+                              mobile: true,
+                            });
+
+                            if (errors.patientName || errors.mobile) {
+                              return;
+                            }
+                          }
+
+                          if (step === 2) {
+                            setTouched({
+                              admissionDate: true,
+                              admissionType: true,
+                              department: true,
+                              doctor: true,
+                              reason: true,
+                            });
+
+                            if (
+                              errors.admissionDate ||
+                              errors.admissionType ||
+                              errors.department ||
+                              errors.doctor ||
+                              errors.reason
+                            ) {
+                              return;
+                            }
+                          }
+
+                          nextStep();
+                        }}
+                      />
+                    ) : (
+                      <Button
+                        type="submit"
+                        title="Submit Admission"
+                        className="bg-green-600 hover:bg-green-700"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </Form>
