@@ -1,4 +1,4 @@
-// patientData.js
+//src  /data/ patientData.js
 
 const patient = [
   {

@@ -1,3 +1,5 @@
+//src\redux\Reducers\RootReducer.js
+
 import { combineReducers } from "redux";
 
 import authReducer from "./AuthReducer";

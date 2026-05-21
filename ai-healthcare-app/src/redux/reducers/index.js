@@ -1,3 +1,4 @@
+//src\redux\Reducers\Index.js
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 
