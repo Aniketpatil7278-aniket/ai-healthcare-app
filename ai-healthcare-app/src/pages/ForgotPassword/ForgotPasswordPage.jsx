@@ -14,7 +14,6 @@ const ForgotPasswordPage = () => {
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Submit
 
   const handleSubmit = (values) => {
     // Dummy Password Reset

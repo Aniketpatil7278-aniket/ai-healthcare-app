@@ -1,6 +1,4 @@
-// ==========================
 // src/components/BedAllocation/AllocationSummary.jsx
-// ==========================
 
 import Button from "../Common/Button";
 

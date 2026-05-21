@@ -1,18 +1,14 @@
-// ==========================
+
 // src/components/Admission/PatientSearchStep.jsx
-// ==========================
 
 import { useEffect, useState } from "react";
-
 import { useFormikContext } from "formik";
 
 import InputField from "../forms/InputField";
+import Button from "../common/Button";
 
 import patientData from "../../data/patients";
-
 import generatePatientId from "../../utils/generatePatientId";
-
-import Button from "../common/Button";
 
 const PatientSearchStep = () => {
   const { values, setFieldValue } = useFormikContext();

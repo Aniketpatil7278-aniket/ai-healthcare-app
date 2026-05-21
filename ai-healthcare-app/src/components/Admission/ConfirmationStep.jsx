@@ -1,9 +1,6 @@
-// ==========================
 // src/components/Admission/ConfirmationStep.jsx
-// ==========================
 
 import { useFormikContext } from "formik";
-
 import Card from "../common/Card";
 
 const ConfirmationStep = () => {

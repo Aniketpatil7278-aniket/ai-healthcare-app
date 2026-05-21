@@ -1,6 +1,5 @@
-// ==========================
+
 // src/components/Admission/Stepper.jsx
-// ==========================
 
 const Stepper = ({ step }) => {
   const steps = ["Patient", "Admission", "Insurance", "Confirmation"];

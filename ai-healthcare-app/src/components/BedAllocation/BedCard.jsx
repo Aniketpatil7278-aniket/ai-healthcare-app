@@ -1,6 +1,4 @@
-// ==========================
 // src/components/BedAllocation/BedCard.jsx
-// ==========================
 
 const BedCard = ({ bed, selectedBed, setSelectedBed }) => {
   const getColor = () => {

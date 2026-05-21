@@ -1,6 +1,4 @@
-// ==========================
 // src/pages/BedAllocation/BedAllocationPage.jsx
-// ==========================
 
 import { useState } from "react";
 

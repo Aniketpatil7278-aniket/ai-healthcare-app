@@ -2,13 +2,13 @@
 // src/pages/Admission/AdmissionPage.jsx
 
 import { useState } from "react";
-
 import { Formik, Form } from "formik";
 
 import Swal from "sweetalert2";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
+import Button from "../../components/common/Button";
 
 import Stepper from "../../components/Admission/Stepper";
 import PatientSearchStep from "../../components/Admission/PatientSearchStep";
@@ -17,8 +17,6 @@ import InsuranceStep from "../../components/Admission/InsuranceStep";
 import ConfirmationStep from "../../components/Admission/ConfirmationStep";
 
 import admissionValidationSchema from "../Admission/admissionValidation";
-
-import Button from "../../components/common/Button";
 
 const AdmissionPage = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));

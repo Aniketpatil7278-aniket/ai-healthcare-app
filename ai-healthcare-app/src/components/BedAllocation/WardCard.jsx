@@ -1,6 +1,4 @@
-// ==========================
 // src/components/BedAllocation/WardCard.jsx
-// ==========================
 
 const WardCard = ({ ward, selectedWard, setSelectedWard }) => {
   return (

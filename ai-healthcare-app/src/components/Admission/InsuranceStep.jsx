@@ -1,6 +1,4 @@
-// ==========================
 // src/components/Admission/InsuranceStep.jsx
-// ==========================
 
 import InputField from "../forms/InputField";
 

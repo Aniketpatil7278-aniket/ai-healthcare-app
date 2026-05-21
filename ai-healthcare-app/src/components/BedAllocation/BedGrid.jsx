@@ -1,6 +1,4 @@
-// ==========================
 // src/components/BedAllocation/BedGrid.jsx
-// ==========================
 
 import BedCard from "./BedCard";
 

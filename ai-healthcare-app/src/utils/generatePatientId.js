@@ -1,6 +1,5 @@
-// ==========================
 // src/utils/generatePatientId.js
-// ==========================
+
 
 const generatePatientId = () => {
   // Current Year

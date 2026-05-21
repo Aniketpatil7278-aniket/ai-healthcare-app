@@ -1,6 +1,4 @@
-// ==========================
 // src/components/BedAllocation/BedFilter.jsx
-// ==========================
 
 const BedFilter = ({ search, setSearch }) => {
   return (

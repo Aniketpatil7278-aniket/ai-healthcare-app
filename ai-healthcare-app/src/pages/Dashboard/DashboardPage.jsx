@@ -1,7 +1,6 @@
 // DashboardPage.jsx
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-// import Card from "../../components/common/Card";
 import DashboardCard from "../../components/Common/DashboardCard";
 import { FaHospital, FaProcedures, FaUserInjured, FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

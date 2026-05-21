@@ -1,16 +1,12 @@
-// ==========================
 // src/components/Admission/AdmissionDetailsStep.jsx
-// ==========================
 
 import { useEffect } from "react";
-
 import { useFormikContext } from "formik";
 
 import InputField from "../forms/InputField";
-
 import doctors from "../../data/doctors";
 
-// Department Auto Fill Component
+
 const DepartmentField = () => {
   const { values, setFieldValue } = useFormikContext();
 

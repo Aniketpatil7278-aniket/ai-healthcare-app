@@ -1,7 +1,6 @@
 // Sidebar.jsx
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 
 import {
@@ -17,7 +16,6 @@ import {
 import Swal from "sweetalert2";
 
 import { logoutUser } from "../../redux/actions/authActions";
-
 import Logo from "../../assets/logo";
 
 const Sidebar = () => {
