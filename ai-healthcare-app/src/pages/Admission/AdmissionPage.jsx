@@ -42,6 +42,8 @@ const AdmissionPage = () => {
     admissionType: "",
     doctor: "",
     department: "",
+    ward: "",
+    bed: "",
     reason: "",
     symptoms: "",
 

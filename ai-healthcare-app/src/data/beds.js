@@ -5,7 +5,7 @@ const beds = [
     id: 1,
     wardId: 1,
     bedNumber: "G-101",
-    status: "Available",
+    status: "Occupied",
   },
 
   {

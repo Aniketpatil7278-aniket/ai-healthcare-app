@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useFormikContext } from "formik";
+import Swal from "sweetalert2";
 
 import InputField from "../forms/InputField";
 import Button from "../common/Button";
@@ -43,8 +44,21 @@ const PatientSearchStep = () => {
       setFieldValue("mobile", existingPatient.phone);
 
       setFieldValue("doctor", existingPatient.doctor);
+      // alert("Patient is Found");
+      Swal.fire({
+        icon: "success",
+        title: "Patient Data Found",
+        text: "Patient data loaded successfully",
+        confirmButtonColor: "#16a34a",
+      });
     } else {
-      alert("Patient Not Found");
+      // alert("Patient Not Found");
+      Swal.fire({
+        icon: "error",
+        title: "Patient Not Found",
+        text: "No Patient record found",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 

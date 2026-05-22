@@ -16,6 +16,10 @@ const admissionValidationSchema = Yup.object({
   doctor: Yup.string().required("Referring Doctor is required"),
 
   department: Yup.string().required("Department is required"),
+  
+  ward: Yup.string().required("Ward is required"),
+
+  bed: Yup.string().required("Bed is required"),
 
   admissionType: Yup.string().required("Admission Type is required"),
 

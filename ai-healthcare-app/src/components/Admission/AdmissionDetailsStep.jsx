@@ -1,12 +1,20 @@
+// ==========================
 // src/components/Admission/AdmissionDetailsStep.jsx
+// ==========================
 
 import { useEffect } from "react";
+
 import { useFormikContext } from "formik";
 
 import InputField from "../forms/InputField";
+
 import doctors from "../../data/doctors";
 
+import wards from "../../data/wards";
 
+import beds from "../../data/beds";
+
+// Department Auto Fill
 const DepartmentField = () => {
   const { values, setFieldValue } = useFormikContext();
 
@@ -25,6 +33,39 @@ const DepartmentField = () => {
       type="text"
       readOnly={true}
       placeholder="Department"
+    />
+  );
+};
+
+// Bed Auto Fill
+const BedField = () => {
+  const { values, setFieldValue } = useFormikContext();
+
+  useEffect(() => {
+    if (values.ward) {
+      const selectedWard = wards.find((ward) => ward.name === values.ward);
+
+      if (selectedWard) {
+        const availableBed = beds.find(
+          (bed) => bed.wardId === selectedWard.id && bed.status === "Available",
+        );
+
+        if (availableBed) {
+          setFieldValue("bed", availableBed.bedNumber);
+        } else {
+          setFieldValue("bed", "No Bed Available");
+        }
+      }
+    }
+  }, [values.ward, setFieldValue]);
+
+  return (
+    <InputField
+      label="Bed"
+      name="bed"
+      type="text"
+      readOnly={true}
+      placeholder="Auto Selected Bed"
     />
   );
 };
@@ -65,6 +106,17 @@ const AdmissionDetailsStep = () => {
 
         {/* Department */}
         <DepartmentField />
+
+        {/* Ward */}
+        <InputField
+          label="Ward"
+          name="ward"
+          as="select"
+          options={wards.map((ward) => ward.name)}
+        />
+
+        {/* Bed */}
+        <BedField />
 
         {/* Reason for Admission */}
         <div className="md:col-span-2">
