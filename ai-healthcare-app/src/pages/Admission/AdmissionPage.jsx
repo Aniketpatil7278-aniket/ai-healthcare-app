@@ -37,6 +37,10 @@ const AdmissionPage = () => {
     patientId: "",
     patientName: "",
     mobile: "",
+    gender: "",
+    dob: "",
+    age: "",
+    address: "",
 
     admissionDate: "",
     admissionType: "",
@@ -176,9 +180,19 @@ const AdmissionPage = () => {
                             setTouched({
                               patientName: true,
                               mobile: true,
+                              gender:true,
+                              age:true,
+                              dob:true,
+                              address:true,
                             });
 
-                            if (errors.patientName || errors.mobile) {
+                            if (errors.patientName || 
+                                errors.mobile ||
+                                errors.gender ||
+                                errors.age ||
+                                errors.dob ||
+                                errors.address
+                          ) {
                               return;
                             }
                           }
@@ -202,7 +216,20 @@ const AdmissionPage = () => {
                               return;
                             }
                           }
+                          if (step === 3) {
+                            setTouched({
+                              insuranceProvider: true,
+                              policyNumber: true,
+                            });
 
+                            if (
+                              errors.insuranceProvider ||
+                              errors.policyNumber
+                            ) {
+                              return;
+                            }
+                          }
+                          
                           nextStep();
                         }}
                       />

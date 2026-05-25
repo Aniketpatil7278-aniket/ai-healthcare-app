@@ -1,18 +1,17 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 
 import LoginPage from "./pages/Login/LoginPage";
 
 import DashboardPage from "./pages/Dashboard/DashboardPage";
-
-import ProtectedRoute from "./routes/ProtectedRoute";
-
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
-
 import PatientsPage from "./pages/Patients/PatientsPage";
-
 import AdmissionPage from "./pages/Admission/AdmissionPage";
-
 import BedWardAllocationPage from "./pages/BedAllocation/BedAllocationPage";
+import DischargePage from "./pages/Discharge/DischargePage";
+
+
 
 function App() {
   const user = sessionStorage.getItem("user");
@@ -65,6 +64,16 @@ function App() {
             <BedWardAllocationPage />
           </ProtectedRoute>
         }
+      />
+
+      {/*Strat Dischareg*/}
+      <Route path="/start-discharge"
+      element={
+        <ProtectedRoute>
+          <DischargePage />
+        </ProtectedRoute>
+      } 
+      
       />
 
       {/* 404 */}

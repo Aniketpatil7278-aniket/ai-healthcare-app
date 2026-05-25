@@ -1,15 +1,20 @@
-
 // src/components/Admission/PatientSearchStep.jsx
 
 import { useEffect, useState } from "react";
+
 import { useFormikContext } from "formik";
+
 import Swal from "sweetalert2";
 
 import InputField from "../forms/InputField";
+
 import Button from "../common/Button";
 
 import patientData from "../../data/patients";
+
 import generatePatientId from "../../utils/generatePatientId";
+
+import calculateAge from "../../utils/calculateAge";
 
 const PatientSearchStep = () => {
   const { values, setFieldValue } = useFormikContext();
@@ -23,9 +28,27 @@ const PatientSearchStep = () => {
     }
   }, [values.patientId, setFieldValue]);
 
+  // Auto Calculate Age from DOB
+  useEffect(() => {
+    if (values.dob) {
+      const age = calculateAge(values.dob);
+
+      setFieldValue("age", age);
+    }
+  }, [values.dob, setFieldValue]);
+
   // Search Function
   const handleSearch = () => {
-    if (!searchValue) return;
+    if (!searchValue) {
+      Swal.fire({
+        icon: "warning",
+        title: "Search Required",
+        text: "Please enter Patient ID, Name or Mobile Number",
+        confirmButtonColor: "#f59e0b",
+      });
+
+      return;
+    }
 
     const searchText = searchValue.toLowerCase();
 
@@ -44,7 +67,15 @@ const PatientSearchStep = () => {
       setFieldValue("mobile", existingPatient.phone);
 
       setFieldValue("doctor", existingPatient.doctor);
-      // alert("Patient is Found");
+
+      setFieldValue("gender", existingPatient.gender);
+
+      setFieldValue("dob", existingPatient.dob);
+
+      setFieldValue("age", existingPatient.age);
+
+      setFieldValue("address", existingPatient.address);
+
       Swal.fire({
         icon: "success",
         title: "Patient Data Found",
@@ -52,11 +83,10 @@ const PatientSearchStep = () => {
         confirmButtonColor: "#16a34a",
       });
     } else {
-      // alert("Patient Not Found");
       Swal.fire({
         icon: "error",
         title: "Patient Not Found",
-        text: "No Patient record found",
+        text: "No patient record found",
         confirmButtonColor: "#dc2626",
       });
     }
@@ -64,6 +94,7 @@ const PatientSearchStep = () => {
 
   return (
     <div>
+      {/* Heading */}
       <h2 className="text-2xl font-bold mb-6">Patient Search / Registration</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -74,7 +105,15 @@ const PatientSearchStep = () => {
             placeholder="Search by Patient ID, Name, or Phone Number"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-blue-500"
+            className="
+              w-full
+              border
+              border-gray-300
+              p-3
+              rounded-lg
+              outline-none
+              focus:border-blue-500
+            "
           />
 
           <Button title="Search" type="button" onClick={handleSearch} />
@@ -103,6 +142,37 @@ const PatientSearchStep = () => {
           type="text"
           placeholder="Enter Mobile Number"
         />
+
+        {/* Gender */}
+        <InputField
+          label="Gender"
+          name="gender"
+          as="select"
+          options={["Male", "Female", "Other"]}
+        />
+
+        {/* DOB */}
+        <InputField label="Date of Birth" name="dob" type="date" />
+
+        {/* Age */}
+        <InputField
+          label="Age"
+          name="age"
+          type="number"
+          readOnly={true}
+          placeholder="Auto Calculated"
+        />
+
+        {/* Address */}
+        <div className="md:col-span-2">
+          <InputField
+            label="Address"
+            name="address"
+            as="textarea"
+            rows="3"
+            placeholder="Enter Address"
+          />
+        </div>
       </div>
     </div>
   );

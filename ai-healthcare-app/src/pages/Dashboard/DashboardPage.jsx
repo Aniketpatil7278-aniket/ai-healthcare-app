@@ -81,7 +81,7 @@ const DashboardPage = () => {
             </button>
 
             <button
-              onClick={() => navigate("/patients")}
+              onClick={() => navigate("/Start-Discharge")}
               className="bg-yellow-500 hover:bg-yellow-600 transition-all text-white p-4 rounded-xl"
             >
               Start Discharge

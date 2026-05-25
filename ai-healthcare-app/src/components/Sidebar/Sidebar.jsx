@@ -60,40 +60,34 @@ const Sidebar = () => {
 
   // Logout Function
 
-  const handleLogout = async () => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
+ const handleLogout = async () => {
+   const result = await Swal.fire({
+     title: "Are you sure?",
+     text: "You want to logout?",
+     icon: "warning",
+     showCancelButton: true,
+     confirmButtonColor: "#3085d6",
+     cancelButtonColor: "#d33",
+     confirmButtonText: "Yes, Logout",
+   });
 
-      text: "You want to logout?",
+   if (result.isConfirmed) {
+     // Redux Logout
+     dispatch(logoutUser());
 
-      icon: "warning",
+     Swal.fire({
+       icon: "success",
+       title: "Logout Successful",
+       text: "Redirecting to login page...",
+       timer: 1500,
+       showConfirmButton: false,
+     });
 
-      showCancelButton: true,
-
-      confirmButtonColor: "#3085d6",
-
-      cancelButtonColor: "#d33",
-
-      confirmButtonText: "Yes, Logout",
-    });
-
-    if (result.isConfirmed) {
-      // Redux Logout
-      dispatch(logoutUser());
-      sessionStorage.removeItem("user");
-      Swal.fire({
-        icon: "success",
-        title: "Logout Successful",
-        text: "Redirecting to login page...",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
-    }
-  };
+     setTimeout(() => {
+       navigate("/");
+     }, 1500);
+   }
+ };
 
   return (
     <aside className="w-[280px] min-h-screen px-[18px] py-6 bg-gradient-to-b from-slate-900 to-slate-800 text-white flex flex-col justify-between border-r border-white/10 sticky top-0 transition-all duration-300 max-[992px]:w-[90px] max-[992px]:px-3 max-[768px]:fixed max-[768px]:left-0 max-[768px]:top-0 max-[768px]:z-[999] max-[768px]:h-screen">

@@ -1,6 +1,6 @@
 // ==========================
 // src/components/Admission/AdmissionDetailsStep.jsx
-// ==========================
+
 
 import { useEffect } from "react";
 
