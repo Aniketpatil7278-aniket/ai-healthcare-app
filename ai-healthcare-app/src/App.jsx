@@ -10,6 +10,7 @@ import PatientsPage from "./pages/Patients/PatientsPage";
 import AdmissionPage from "./pages/Admission/AdmissionPage";
 import BedWardAllocationPage from "./pages/BedAllocation/BedAllocationPage";
 import DischargePage from "./pages/Discharge/DischargePage";
+import ReportsPage from "./pages/Reports/ReportsPage";
 
 
 
@@ -67,13 +68,22 @@ function App() {
       />
 
       {/*Strat Dischareg*/}
-      <Route path="/start-discharge"
-      element={
-        <ProtectedRoute>
-          <DischargePage />
-        </ProtectedRoute>
-      } 
-      
+      <Route
+        path="/start-discharge"
+        element={
+          <ProtectedRoute>
+            <DischargePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/reports"
+        element={
+          <ProtectedRoute>
+            <ReportsPage />
+          </ProtectedRoute>
+        }
       />
 
       {/* 404 */}
