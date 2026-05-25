@@ -1,10 +1,11 @@
-//src\redux\Reducers\AuthReducer.js
+// src/state-management/authurization/authReducer.js
+
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
-} from "../constants/AuthConstants.js";
+} from "./authActions";
 
 const initialState = {
   loading: false,
@@ -18,6 +19,7 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    // LOGIN REQUEST
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -25,14 +27,17 @@ const authReducer = (state = initialState, action) => {
         error: null,
       };
 
+    // LOGIN SUCCESS
     case LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
         user: action.payload,
         isAuthenticated: true,
+        error: null,
       };
 
+    // LOGIN FAILURE
     case LOGIN_FAILURE:
       return {
         ...state,
@@ -40,6 +45,7 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
+    // LOGOUT
     case LOGOUT:
       sessionStorage.removeItem("user");
 

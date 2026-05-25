@@ -1,6 +1,8 @@
-//src\redux\Reducers\Index.js
+// src/state-management/rootReducer.js
+
 import { combineReducers } from "redux";
-import authReducer from "./authReducer";
+
+import authReducer from "./authurization/authReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,

@@ -22,8 +22,8 @@ import {
 
 import Swal from "sweetalert2";
 
-import { logoutUser } from "../../redux/actions/authActions";
-import Logo from "../../assets/logo";
+// import { logoutUser } from "../../redux/actions/authActions";
+import { logoutUser } from "../../state-management/authurization/authActions";import Logo from "../../assets/logo";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -77,7 +77,7 @@ const Sidebar = () => {
     if (result.isConfirmed) {
       dispatch(logoutUser());
 
-      sessionStorage.removeItem("user");
+      // sessionStorage.removeItem("user");
 
       Swal.fire({
         icon: "success",
