@@ -76,7 +76,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-
+      {/*Report*/}
       <Route
         path="/reports"
         element={

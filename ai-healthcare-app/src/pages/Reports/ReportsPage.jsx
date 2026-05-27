@@ -12,10 +12,8 @@ import beds from "../../data/beds";
 const ReportsPage = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
 
-  // =========================
+  
   // Reports Data
-  // =========================
-
   const totalPatients = patients.length;
 
   const totalDoctors = doctors.length;
