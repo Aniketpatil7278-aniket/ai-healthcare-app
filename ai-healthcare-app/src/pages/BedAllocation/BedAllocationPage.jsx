@@ -68,7 +68,7 @@ const BedAllocationPage = () => {
         <Header user={user} />
 
         {/* Header */}
-        <div className="bg-white p-6 rounded-2xl shadow mb-6">
+        {/* <div className="bg-white p-6 rounded-2xl shadow mb-6">
           <h2 className="text-2xl font-bold">Bed/Ward Allocation</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
@@ -92,10 +92,12 @@ const BedAllocationPage = () => {
               <h3 className="font-semibold">Emergency</h3>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Search */}
-        <BedFilter search={search} setSearch={setSearch} />
+        <div className="mt-2">
+          <BedFilter search={search} setSearch={setSearch} />
+        </div>
 
         {/* Ward Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
