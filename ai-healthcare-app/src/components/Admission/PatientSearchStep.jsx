@@ -129,7 +129,7 @@ const PatientSearchStep = () => {
 
         {/* Patient Name */}
         <InputField
-          label="Patient Name"
+          label="Patient Name *"
           name="patientName"
           type="text"
           placeholder="Enter Patient Name"
@@ -137,7 +137,7 @@ const PatientSearchStep = () => {
 
         {/* Mobile Number */}
         <InputField
-          label="Mobile Number"
+          label="Mobile Number *"
           name="mobile"
           type="text"
           placeholder="Enter Mobile Number"
@@ -145,18 +145,18 @@ const PatientSearchStep = () => {
 
         {/* Gender */}
         <InputField
-          label="Gender"
+          label="Gender *"
           name="gender"
           as="select"
           options={["Male", "Female", "Other"]}
         />
 
         {/* DOB */}
-        <InputField label="Date of Birth" name="dob" type="date" />
+        <InputField label="Date of Birth *" name="dob" type="date" />
 
         {/* Age */}
         <InputField
-          label="Age"
+          label="Age *"
           name="age"
           type="number"
           readOnly={true}
@@ -166,7 +166,7 @@ const PatientSearchStep = () => {
         {/* Address */}
         <div className="md:col-span-2">
           <InputField
-            label="Address"
+            label="Address *"
             name="address"
             as="textarea"
             rows="3"

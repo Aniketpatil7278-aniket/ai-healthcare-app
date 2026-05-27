@@ -12,19 +12,32 @@ import BedWardAllocationPage from "./pages/BedAllocation/BedAllocationPage";
 import DischargePage from "./pages/Discharge/DischargePage";
 import ReportsPage from "./pages/Reports/ReportsPage";
 
-
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = sessionStorage.getItem("user");
+  // const user = sessionStorage.getItem("user");
+   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <Routes>
       {/* Login Route */}
 
-      <Route
+      {/* <Route
         path="/"
         element={user ? <Navigate to="/dashboard" /> : <LoginPage />}
-      />
+      /> */}
+       
+        {/* Login */}
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <LoginPage />
+            )
+          }
+        />
 
       {/* Forgot Password */}
 

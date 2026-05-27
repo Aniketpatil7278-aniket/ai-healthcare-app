@@ -1,6 +1,5 @@
-// ==========================
-// src/components/Admission/AdmissionDetailsStep.jsx
 
+// src/components/Admission/AdmissionDetailsStep.jsx
 
 import { useEffect } from "react";
 
@@ -28,7 +27,7 @@ const DepartmentField = () => {
 
   return (
     <InputField
-      label="Department"
+      label="Department *"
       name="department"
       type="text"
       readOnly={true}
@@ -61,7 +60,7 @@ const BedField = () => {
 
   return (
     <InputField
-      label="Bed"
+      label="Bed *"
       name="bed"
       type="text"
       readOnly={true}
@@ -82,7 +81,7 @@ const AdmissionDetailsStep = () => {
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {/* Admission Date */}
         <InputField
-          label="Admission Date"
+          label="Admission Date *"
           name="admissionDate"
           type="date"
           min={today}
@@ -90,7 +89,7 @@ const AdmissionDetailsStep = () => {
 
         {/* Admission Type */}
         <InputField
-          label="Admission Type"
+          label="Admission Type *"
           name="admissionType"
           as="select"
           options={["Emergency", "General", "ICU"]}
@@ -98,7 +97,7 @@ const AdmissionDetailsStep = () => {
 
         {/* Referring Doctor */}
         <InputField
-          label="Referring Doctor"
+          label="Referring Doctor *"
           name="doctor"
           as="select"
           options={doctors}
@@ -109,7 +108,7 @@ const AdmissionDetailsStep = () => {
 
         {/* Ward */}
         <InputField
-          label="Ward"
+          label="Ward *"
           name="ward"
           as="select"
           options={wards.map((ward) => ward.name)}
@@ -121,7 +120,7 @@ const AdmissionDetailsStep = () => {
         {/* Reason for Admission */}
         <div className="md:col-span-2">
           <InputField
-            label="Reason for Admission"
+            label="Reason for Admission *"
             name="reason"
             as="textarea"
             rows="3"

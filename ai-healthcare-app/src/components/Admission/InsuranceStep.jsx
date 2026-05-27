@@ -10,7 +10,7 @@ const InsuranceStep = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Insurance Provider */}
         <InputField
-          label="Insurance Provider"
+          label="Insurance Provider *"
           name="insuranceProvider"
           type="text"
           placeholder="Enter Insurance Provider"
@@ -18,7 +18,7 @@ const InsuranceStep = () => {
 
         {/* Policy Number */}
         <InputField
-          label="Policy Number"
+          label="Policy Number *"
           name="policyNumber"
           type="text"
           placeholder="Enter Policy Number"
